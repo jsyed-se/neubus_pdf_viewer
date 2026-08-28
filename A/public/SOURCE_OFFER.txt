@@ -1,0 +1,17 @@
+Atlas PDF SDK — Corresponding Source and License Notice
+
+This application is licensed under AGPL-3.0-or-later. The complete preferred
+form for modification is the repository containing this file, including the
+A/, B/, and C/ directories, root package.json, package-lock.json, and build
+configuration. The corresponding source is publicly available at:
+https://github.com/jsyed-se/neubus_pdf_viewer
+
+MuPDF.js 1.28.0 is linked into the document-processing Web Worker. Its package
+corresponding upstream source is pinned at:
+https://github.com/ArtifexSoftware/mupdf/tree/1.28.0
+
+The exact published JavaScript package artifact is:
+https://registry.npmjs.org/mupdf/-/mupdf-1.28.0.tgz
+
+The full AGPL license text is available at /LICENSE.txt and in the repository
+root as LICENSE. No local changes were made to MuPDF.js itself.

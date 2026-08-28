@@ -1,0 +1,16 @@
+{
+  "name": "atlas-pdf-sdk-submission",
+  "version": "1.0.0",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "workspaces": [
+    "A"
+  ],
+  "scripts": {
+    "dev": "npm --workspace @atlas/pdf-sdk-demo run dev",
+    "build": "npm --workspace @atlas/pdf-sdk-demo run build",
+    "typecheck": "npm --workspace @atlas/pdf-sdk-demo run typecheck",
+    "lint": "npm --workspace @atlas/pdf-sdk-demo run lint",
+    "test": "npm --workspace @atlas/pdf-sdk-demo run test"
+  }
+}
