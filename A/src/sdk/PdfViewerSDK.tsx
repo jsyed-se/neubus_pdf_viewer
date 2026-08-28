@@ -229,7 +229,7 @@ export function PdfViewerSDK(props: PdfViewerSDKProps) {
   useEffect(() => {
     const revision = ++documentRevision.current;
     loadingTaskRef.current?.destroy();
-    void engine.call({ type: 'reset' }).catch(() => undefined);
+    void engine.resetIfStarted().catch(() => undefined);
     setEngineSnapshot(null);
     setEditorOpen(false);
     setSelectedPages(new Set());

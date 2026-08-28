@@ -12,7 +12,7 @@ The repository contained no application source, architecture document, AI log, R
 | Local / URL / byte loading | Implemented | discriminated inputs and PDF.js loading task | Browser/server CORS rules apply |
 | Range/linearized loading | Implemented | URL passed directly with ranges enabled and background stream/autofetch disabled | A server without ranges may require a full response; fastest first page needs HTTP 206 and a linearized PDF |
 | Progress/cancel/password/errors | Implemented | loading panel, destroyable task, password callback, actionable error mapping | Broad encrypted/corrupt-file validation is Phase 2/3 |
-| Viewing/navigation | Implemented | lazy high-DPI pages/thumbnails, direct/prev/next, keyboard, three modes | No selectable accessibility text layer |
+| Viewing/navigation | Implemented | lazy high-DPI pages/thumbnails, selectable PDF.js text, direct/prev/next, keyboard, three modes | Tagged-PDF reading order and screen-reader behavior depend on source quality and await Phase 2 validation |
 | Real fit modes | Implemented | actual workspace observer, mounted spread count, live gap, `lib/viewMath.ts`, focused tests | Browser zoom can affect available CSS pixels |
 | Transactional editor | Implemented | worker journal, committed bytes, Save/Cancel, dirty guards | Very large import histories can consume worker memory |
 | Page operations | Implemented | rotate/reorder/delete/graft/subset/copy/paste through MuPDF | Complex unsupported structures may be lost when MuPDF grafts pages |
@@ -27,7 +27,7 @@ The repository contained no application source, architecture document, AI log, R
 | Signature form fields | Blocked | visible blocker in annotation panel | MuPDF.js 1.28 browser types expose widget inspection but no safe signature-field/AcroForm creation helper; low-level cyclic object work was not considered reliable enough to claim |
 | Widget annotations | Partial | existing widget type/name/value inspection | Widget creation is blocked for the same verified API gap |
 | Bookmark read/create/edit/delete | Implemented | MuPDF outline and iterator calls; spike verified create/reopen | New bookmarks are added at root level |
-| Accessibility / responsive UI | Implemented | semantic labels, focus, live regions, reorder buttons, tablet CSS | Canvas document text is not screen-reader exposed |
+| Accessibility / responsive UI | Implemented | semantic labels, selectable text layer, focus, live regions, reorder buttons, tablet CSS | Tagged-PDF reading order and broad screen-reader behavior are not yet certified |
 
 ## Important Files
 
@@ -65,7 +65,7 @@ The implementation did not inherit source AI output. Material Codex corrections 
 - `npm run lint` — passed after lifecycle and hook cleanup; final rerun is part of the handoff gate.
 - `npm test` — 6 focused fit/spread tests passed.
 - `npm run build` — production build completed and emitted separate PDF.js worker plus `mupdf-wasm` (10.4 MB uncompressed).
-- `npm run dev` / local browser smoke — the exact root command started Vite; a remote 14-page PDF loaded with a selectable text layer; spread fit-width mounted two pages with zero calculated overflow; selected text serialized/reloaded as a native `Highlight`; selecting its panel row produced an on-page outline; MuPDF initialized with 14 real editor cards; Paste was correctly disabled; page 1 serialized/reloaded at 90°; Undo became available; Save returned to the viewer; and the final tab reported no console errors. Proxy-swap and missing-highlight-rectangle assumptions exposed by smoke were corrected before the passing rerun.
+- `npm run dev` / local browser smoke — the exact root command started Vite; a remote 14-page PDF loaded with a selectable text layer and no MuPDF/WASM network request before processing; spread fit-width mounted two pages with zero calculated overflow; selected text serialized/reloaded as a native `Highlight`; selecting its panel row produced an on-page outline; MuPDF initialized with 14 real editor cards; Paste was correctly disabled; page 1 serialized/reloaded at 90°; Undo became available; Save returned to the viewer; and the final tab reported no console errors. Proxy-swap and missing-highlight-rectangle assumptions exposed by smoke were corrected before the passing rerun.
 
 ## Known Limitations
 

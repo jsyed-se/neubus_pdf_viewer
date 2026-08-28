@@ -36,7 +36,7 @@ React state holds view mode, current page, zoom policy, panel visibility, loadin
 
 ## Document-Loading Lifecycle
 
-For URLs, the SDK passes the URL directly to PDF.js with byte ranges enabled and background stream/autofetch disabled. This prevents an idle viewer from eagerly acquiring the entire file while still allowing available pages to render through HTTP 206 requests. CORS and byte-range support remain server responsibilities; a server without ranges may require a full response. Local files and raw bytes go directly to PDF.js. Cancellation destroys the loading task. Full bytes are acquired once, lazily, when a mutation, annotation, print, or export requires MuPDF.
+For URLs, the SDK passes the URL directly to PDF.js with byte ranges enabled and background stream/autofetch disabled. This prevents an idle viewer from eagerly acquiring the entire file while still allowing available pages to render through HTTP 206 requests. CORS and byte-range support remain server responsibilities; a server without ranges may require a full response. Local files and raw bytes go directly to PDF.js. Cancellation destroys the loading task. Full bytes are requested explicitly only when processing, printing, or export needs them; editing and annotation initialize MuPDF, while unedited print/export can use PDF.js bytes directly.
 
 ## Viewing Lifecycle
 

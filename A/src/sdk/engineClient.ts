@@ -40,6 +40,11 @@ export class PdfEngineClient {
     });
   }
 
+  resetIfStarted(): Promise<EngineResult> {
+    if (!this.worker) return Promise.resolve({});
+    return this.call({ type: 'reset' });
+  }
+
   destroy() {
     this.worker?.terminate();
     this.worker = null;
